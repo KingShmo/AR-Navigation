@@ -1,0 +1,22 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+  background: var(--jpmc-gray);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #002D7240;
+}
+
+.read-the-docs {
+  color: var(--jpmc-secondary);
+}
+
+/* Remove logo styles for cleaner look */
+.logo, .logo.react {
+  display: none;
+}
