@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { jpmcColors, jpmcThemeUI } from './jpmcTheme';
 import PulsatingArrow from './PulsatingArrow';
+import type { NavigationMode } from './types';
 
 // Simple pulsating effect component
 const PulseEffect: React.FC<{children: React.ReactNode}> = ({ children }) => {
@@ -153,9 +154,13 @@ interface GoogleStyle3DViewProps {
   eta: number;
   distance: number;
   direction: 'forward' | 'left' | 'right' | 'stairs' | 'elevator';
+  navMode: NavigationMode;
   isDarkMode?: boolean;
+  onNavigate?: (point: { x: number; y: number; z: number }) => void;
+  controlsRef?: React.RefObject<any>;
   children?: React.ReactNode;
   onToggleViewMode?: () => void;
+  hideCenterDiamond?: boolean;
 }
 
 const GoogleStyle3DView: React.FC<GoogleStyle3DViewProps> = ({
@@ -163,9 +168,13 @@ const GoogleStyle3DView: React.FC<GoogleStyle3DViewProps> = ({
   eta,
   distance,
   direction,
+  navMode,
   isDarkMode = false,
+  onNavigate,
+  controlsRef,
   children,
-  onToggleViewMode
+  onToggleViewMode,
+  hideCenterDiamond
 }) => {
   return (
     <div style={{ position: 'relative', height: '100%', width: '100%' }}>
@@ -454,25 +463,29 @@ const GoogleStyle3DView: React.FC<GoogleStyle3DViewProps> = ({
 
 // Enhanced version that integrates PulsatingArrow for more dynamic 3D indicators
 const EnhancedGoogleStyle3DView: React.FC<GoogleStyle3DViewProps> = (props) => {
-  const { direction, isDarkMode } = props;
+  const { direction, isDarkMode, onNavigate, hideCenterDiamond } = props;
+  
   return (
     <GoogleStyle3DView {...props}>
       {props.children}
+      
       {/* Add a pulsating arrow for better visibility in 3D */}
-      <div style={{
-        position: 'absolute',
-        bottom: '45%',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 99,
-        pointerEvents: 'none'
-      }}>
-        <PulsatingArrow 
-          direction={direction}
-          size={5}
-          isDarkMode={isDarkMode}
-        />
-      </div>
+      {!hideCenterDiamond && (
+        <div style={{
+          position: 'absolute',
+          bottom: '45%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 99,
+          pointerEvents: 'none'
+        }}>
+          <PulsatingArrow 
+            direction={direction}
+            size={5}
+            isDarkMode={isDarkMode}
+          />
+        </div>
+      )}
     </GoogleStyle3DView>
   );
 };

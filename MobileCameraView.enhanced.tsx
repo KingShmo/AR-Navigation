@@ -720,8 +720,7 @@ const MobileCameraView: React.FC<MobileCameraViewProps> = ({
           distance={distance} 
         />
       </div>
-      
-      {/* Additional Google Maps-like UI elements */}
+        {/* Minimal UI in pure AR mode - just a recenter button */}
       <div style={{
         position: 'absolute',
         bottom: '220px',
@@ -740,7 +739,8 @@ const MobileCameraView: React.FC<MobileCameraViewProps> = ({
             justifyContent: 'center',
             alignItems: 'center',
             cursor: 'pointer',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.3)'
+            boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
+            opacity: 0.8 // More transparent in AR mode
           }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="#5f6368">

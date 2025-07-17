@@ -11,6 +11,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, isDarkMode = tr
   const [message, setMessage] = useState('Initializing JPMC Office Environment...');
   const [isInitializing, setIsInitializing] = useState(true);
   const [splashScreenVisible, setSplashScreenVisible] = useState(true); // Add explicit visibility state
+
   useEffect(() => {
     let timer: number;
     let interval: number;
@@ -120,7 +121,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, isDarkMode = tr
           marginBottom: '1.5rem',
           textShadow: '0 2px 10px rgba(0,0,0,0.3)',
         }}>
-          JPMC AR Navigation
+          JPMC WayFindAR
         </h1>
         
         <div style={{

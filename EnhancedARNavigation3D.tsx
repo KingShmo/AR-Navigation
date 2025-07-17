@@ -390,14 +390,10 @@ const EnhancedARNavigation3D: React.FC<EnhancedARNavigation3DProps> = ({
               <meshStandardMaterial color="#7D5A4F" roughness={0.8} />
             </mesh>
             
-            {/* Plant */}            <mesh position={[0, 0.35, 0]} castShadow receiveShadow>
+            {/* Plant */}
+            <mesh position={[0, 0.35, 0]} castShadow receiveShadow>
               <sphereGeometry args={[0.3, 16, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
-              <meshStandardMaterial 
-                color={isDarkMode ? '#1a4d1a' : '#228B22'} 
-                roughness={0.8}
-                emissive={isDarkMode ? '#0a2d0a' : undefined}
-                emissiveIntensity={isDarkMode ? 0.2 : 0}
-              />
+          switch(selectedDestination?.name) {
             </mesh>
           </group>
         ))}

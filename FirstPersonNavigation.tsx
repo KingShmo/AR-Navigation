@@ -417,8 +417,7 @@ const FirstPersonNavigation: React.FC<FirstPersonNavigationProps> = ({
           </div>
         </div>
       )}
-      
-      {/* Bottom control bar (Google Maps style) */}
+        {/* Bottom control bar (Google Maps style) */}
       <div style={{
         position: 'absolute',
         bottom: '20px',
@@ -469,6 +468,37 @@ const FirstPersonNavigation: React.FC<FirstPersonNavigationProps> = ({
           onClick={() => setShowNetworkInfo(!showNetworkInfo)}
         >
           {showNetworkInfo ? '🔌' : '🔌'}
+        </button>
+      </div>
+      
+      {/* Return to 3D View Button */}
+      <div style={{
+        position: 'absolute',
+        top: '20px',
+        right: '20px',
+        zIndex: 1000
+      }}>
+        <button
+          onClick={() => window.history.back()}
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            color: '#1A73E8',
+            border: 'none',
+            borderRadius: '8px',
+            padding: '12px 16px',
+            fontSize: '14px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1A73E8">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+          </svg>
+          Return to 3D View
         </button>
       </div>
 

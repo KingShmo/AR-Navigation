@@ -439,8 +439,7 @@ const GoogleMapsNavigation: React.FC<GoogleMapsNavigationProps> = ({
     if (hostname === 'localhost') {
       setNetworkUrl(`http://10.105.132.50:${port}`);
     }
-  }, []);
-  // Toggle AR mode on/off
+  }, []);  // Toggle AR mode on/off
   const toggleARMode = () => {
     console.log("GoogleMapsNavigation: Toggle AR mode requested, arEnabled =", arEnabled);
     
@@ -448,6 +447,11 @@ const GoogleMapsNavigation: React.FC<GoogleMapsNavigationProps> = ({
     if (!arEnabled) {
       console.log("GoogleMapsNavigation: AR mode not yet available, ignoring toggle request");
       return;
+    }
+    
+    // Hide UI info when switching to AR mode
+    if (!isARMode) {
+      setShowInfo(false);
     }
     
     // If there's an external toggle function, use that
@@ -485,15 +489,14 @@ const GoogleMapsNavigation: React.FC<GoogleMapsNavigationProps> = ({
           isDarkMode={isDarkMode}
         />
       )}
-      
-      {/* Google Maps style UI */}
+        {/* Google Maps style UI - Semi-transparent in AR mode */}
       {showInfo && (
         <div style={{
           position: 'absolute',
           bottom: '80px',
           left: '0',
           right: '0',
-          background: 'white',
+          background: isARMode ? 'rgba(255, 255, 255, 0.8)' : 'white', // Semi-transparent in AR mode
           color: '#202124',
           padding: '15px',
           margin: '0 10px',
@@ -541,8 +544,7 @@ const GoogleMapsNavigation: React.FC<GoogleMapsNavigationProps> = ({
           </div>
         </div>
       )}
-      
-      {/* Bottom control bar (Google Maps style) */}
+        {/* Bottom control bar (Google Maps style) - Semi-transparent in AR mode */}
       <div style={{
         position: 'absolute',
         bottom: '20px',
@@ -550,21 +552,20 @@ const GoogleMapsNavigation: React.FC<GoogleMapsNavigationProps> = ({
         right: '0',
         display: 'flex',
         justifyContent: 'center',
-        gap: '15px',
+        gap: isARMode ? '10px' : '15px',
         zIndex: 100
       }}>
         <button 
-          style={{
-            background: 'white',
+          style={{            background: isARMode ? 'rgba(255, 255, 255, 0.9)' : 'white',
             color: isARMode ? '#1A73E8' : '#202124',
             border: 'none',
             borderRadius: '50%',
-            width: '50px',
-            height: '50px',
+            width: isARMode ? '45px' : '50px',
+            height: isARMode ? '45px' : '50px',
             fontSize: '1rem',
             fontWeight: 'bold',
             cursor: 'pointer',
-            boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
+            boxShadow: isARMode ? '0 2px 4px rgba(0,0,0,0.3)' : '0 2px 5px rgba(0,0,0,0.2)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
@@ -664,21 +665,21 @@ const GoogleMapsNavigation: React.FC<GoogleMapsNavigationProps> = ({
           </div>
         </div>
       )}
-      
-      {/* Instructions - temporarily shown */}
+        {/* Instructions - temporarily shown, semi-transparent in AR mode */}
       <div style={{
         position: 'absolute',
         top: '20px',
         left: '50%',
         transform: 'translateX(-50%)',
-        background: 'white',
+        background: isARMode ? 'rgba(255, 255, 255, 0.7)' : 'white',
         color: '#202124',
-        padding: '15px',
+        padding: isARMode ? '10px' : '15px',
         borderRadius: '8px',
-        maxWidth: '80%',
+        maxWidth: isARMode ? '70%' : '80%',
         zIndex: 100,
         textAlign: 'center',
-        boxShadow: '0 2px 6px rgba(0,0,0,0.15)'
+        boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+        opacity: isARMode ? 0.9 : 1
       }}>
         <div style={{ fontSize: '1rem', fontWeight: 'bold', marginBottom: '8px' }}>
           Navigation Controls

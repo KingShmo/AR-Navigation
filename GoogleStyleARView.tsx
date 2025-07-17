@@ -480,60 +480,7 @@ const GoogleStyleARView: React.FC<GoogleStyleARViewProps> = ({
         height: '100%',
         background: 'rgba(0, 0, 0, 0.1)', // Slight darkening for better contrast with virtual elements
         pointerEvents: 'none' // Allow clicks to pass through
-      }} />        {/* JPMC Style Header */}
-      <div style={{
-        position: 'absolute',
-        top: '10px',
-        left: '10px',
-        right: '10px',
-        backgroundColor: 'white',
-        borderRadius: jpmcThemeUI.borderRadius.lg,
-        padding: '12px',
-        boxShadow: jpmcThemeUI.shadows.md,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        zIndex: 101
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ 
-            backgroundColor: jpmcColors.primary, 
-            width: '32px', 
-            height: '32px', 
-            borderRadius: '50%', 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center',
-            marginRight: '10px'
-          }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-          </div>
-          <div>
-            <div style={{ fontWeight: 'bold', fontSize: '16px', color: jpmcColors.text }}>{destination}</div>
-            <div style={{ color: jpmcColors.textLight, fontSize: '14px' }}>
-              {Math.floor(eta/60)} min {eta % 60} sec • {distance} ft
-            </div>
-          </div>
-        </div>
-        <button 
-          onClick={() => {/* Handle navigation end */}} 
-          style={{
-            backgroundColor: jpmcColors.primary,
-            color: jpmcColors.white,
-            border: 'none',
-            borderRadius: jpmcThemeUI.borderRadius.md,
-            padding: '8px 12px',
-            fontSize: '14px',
-            fontWeight: 'bold',
-            cursor: 'pointer',
-            boxShadow: jpmcThemeUI.shadows.sm
-          }}
-        >
-          End
-        </button>
-      </div>        {/* JPMC Style Direction Arrow Panel */}
+      }} />        {/* JPMC Style Direction Arrow Panel */}
       <div style={{
         position: 'absolute',
         top: '80px',
